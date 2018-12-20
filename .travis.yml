@@ -1,10 +1,14 @@
 language: swift
 osx_image: Xcode 10.1
-
-xcode_project: release-it.xcodeproj # path to your xcodeproj folder
+xcode_project: release-it.xcodeproj
 xcode_scheme: release-itTests
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
-
 script:
-- xctool clean build -workspace XLProjectName.xcworkspace -scheme XLProjectName -sdk iphonesimulator | xcpretty
-- xcodebuild test -workspace XLProjectName.xcworkspace -scheme XLProjectName -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=9.3' | xcpretty
+- xctool clean build -workspace XLProjectName.xcworkspace -scheme XLProjectName -sdk
+  iphonesimulator | xcpretty
+- xcodebuild test -workspace XLProjectName.xcworkspace -scheme XLProjectName -sdk
+  iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=9.3' | xcpretty
+notifications:
+  slack:
+    rooms:
+      secure: kzZy1p1oeT6MD1ZpfHgxvSoSRtT40DBoM9XD4ZhPpSA9SpTCzq1XDyWcLMt5DjKo75Tozu5vsmMJ/lrP5ZALn4O9+3S0up7lY5SyBq9e24QIDJXHZRXyHaxLUee3RipfEQWMI7sXK6Ey/j2oFQiBcaz6dRnmgEpW3LZEqjwUxRsPzJtd+MlTxqNyrS5/rjQowRBhpCOmU7dhKzlaiL8OrBCaGNVU7R/Doz4Ms5VxiKTKKbMeb2pwMCBtXdWw9BBxsuP6+lFLKAwDaNKXr/OFwG/8uKmKKa8mTMrKZ861Sn76Yrr44Dlfg3l+zF2MMrG7YMEDZp0+TrxZP3jcJXYgrwiYnwHZHp2qUIE3VYgnWC7mUp57yI+R3/HH2Ictfw/ZmscAYkiUR4psvSJhqkT6ZZb05yp3su9uL9Uttayg5GC33/00aURxxjmsMigPAN4+7SYI5pNAdfbD7JMSSlkt6ZwmMKCGW517OHC2fFkhxhlzk1FnwHkdHqsOxILa4DpIqm287BIA4kW48xZIOZJkUcR/nOVcNqy6ErFGJAVkscBNUDOce9wCXORVpv7nYnoyth56x2uiHY1WPZOC5NZM0URtU84/UV+Gv8hs03IkwcokcVkC0KGPjEiiNyyah4vmetya9pFtvsAJhBDU9X/nu5Z7JlVjtSQQCdH22kO5kNY=
