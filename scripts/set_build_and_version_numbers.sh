@@ -31,30 +31,21 @@ gitTag=$("$git" describe --tags)
 gitTagWithStatus="$(setIsSnapshot $gitTag)"
 gitCommitAndTagCount="$(($($git rev-list HEAD --count) + $($git tag | wc -l)))"
 
-echo $gitCommitAndTagCount
-echo $gitTagWithStatus
+dsym_plist="$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist"
+target_plist="$TARGET_BUILD_DIR/$INFOPLIST_PATH"
 
-
-
-
-
-####################################################################################
-
-#dsym_plist="$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist"
-#target_plist="$TARGET_BUILD_DIR/$INFOPLIST_PATH"
-
-#for plist in "$target_plist" "$dsym_plist"; do
-#    if [ -f "$plist" ]; then
-#        if [ $CONFIGURATION = "Debug" ]; then
-#            /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $gitCommitCount" "$plist"
-#            echo "Build number set to $gitCommitCount in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-#            /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $gitTag" "$plist"
-#            echo "Build version set to $gitTag in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-#        else
-#            /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $gitCommitCount" "$plist"
-#            echo "Build number set to $gitCommitCount in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-#            /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $gitTag" "$plist"
-#            echo "Build version set to $gitTag in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-#        fi
-#    fi
-#done
+for plist in "$target_plist" "$dsym_plist"; do
+    if [ -f "$plist" ]; then
+        if [ $CONFIGURATION = "Debug" ]; then
+            /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $gitCommitAndTagCount" "$plist"
+            echo "Build number set to $gitCommitAndTagCount in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
+            /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $gitTagWithStatus" "$plist"
+            echo "Build version set to $gitTagWithStatus in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
+        else
+            /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $gitCommitAndTagCount" "$plist"
+            echo "Build number set to $gitCommitAndTagCount in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
+            /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $gitTagWithStatus" "$plist"
+            echo "Build version set to $gitTagWithStatus in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
+        fi
+    fi
+done
