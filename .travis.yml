@@ -2,7 +2,7 @@ language: swift
 osx_image: Xcode 10.1
 xcode_project: release-it.xcodeproj
 xcode_scheme: release-itTests
-xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
+xcode_destination: platf orm=iOS Simulator,OS=12.1,name=iPhone X
 script:
 - xctool clean build -workspace XLProjectName.xcworkspace -scheme XLProjectName -sdk
   iphonesimulator | xcpretty

@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func RecordAudio(_ sender: Any) {
-        Label.text = "Help!!!"
+        Label.text = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String) + "|" + (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String)
     }
     
     @IBAction func erts(_ sender: UIButton) {

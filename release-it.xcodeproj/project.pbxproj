@@ -52,6 +52,7 @@
 		8509AFEE21C97115005FF90D /* release-itUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "release-itUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8509AFF221C97115005FF90D /* release_itUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = release_itUITests.swift; sourceTree = "<group>"; };
 		8509AFF421C97115005FF90D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85134C512249652C0091B261 /* set_build_and_version_numbers.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = set_build_and_version_numbers.sh; path = scripts/set_build_and_version_numbers.sh; sourceTree = "<group>"; };
 		854788F821CA993600592D34 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		854788FA21CA9C5000592D34 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		854788FC21CA9C8F00592D34 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		8509AFC321C97110005FF90D = {
 			isa = PBXGroup;
 			children = (
+				85134C512249652C0091B261 /* set_build_and_version_numbers.sh */,
 				854788FC21CA9C8F00592D34 /* README.md */,
 				854788FA21CA9C5000592D34 /* .gitignore */,
 				854788F821CA993600592D34 /* .travis.yml */,
@@ -147,6 +149,7 @@
 				8509AFC821C97110005FF90D /* Sources */,
 				8509AFC921C97110005FF90D /* Frameworks */,
 				8509AFCA21C97110005FF90D /* Resources */,
+				85134C5222496E230091B261 /* Set Build Number */,
 			);
 			buildRules = (
 			);
@@ -265,6 +268,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		85134C5222496E230091B261 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/scripts/set_build_and_version_numbers.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8509AFC821C97110005FF90D /* Sources */ = {
@@ -454,7 +479,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moonlitdoor.release-it";
+				PRODUCT_BUNDLE_IDENTIFIER = com.moonlitdoor.release.it;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -471,7 +496,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moonlitdoor.release-it";
+				PRODUCT_BUNDLE_IDENTIFIER = com.moonlitdoor.release.it;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
